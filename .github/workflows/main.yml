@@ -14,6 +14,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      # Install Python and pip
+      - name: Install Python
+        run: |
+          brew install python
+          python3 -m pip install --upgrade pip
+
+      # Install required Python modules
+      - name: Install Python modules
+        run: |
+          pip install requests mido
+
       # Install Qt 6
       - name: Install Qt 6
         run: |
