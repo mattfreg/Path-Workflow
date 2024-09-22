@@ -11,7 +11,7 @@ original_dir=$(pwd)
 parent_directory="."
 
 # Create the output file with header
-echo "const songs = [" > "$original_dir/fnfp.fs"
+echo "const songs = [" > "$original_dir/fnfp.js"
 
 # Loop through each subdirectory (excluding hidden directories)
 for dir in "$parent_directory"/*/; do
@@ -158,7 +158,7 @@ for dir in "$parent_directory"/*/; do
         },'
 
         # Append the template to fnfp.fs
-        echo "$template" >> "$original_dir/fnfp.fs"
+        echo "$template" >> "$original_dir/fnfp.js"
 
         # Return to the original directory
         cd "$original_dir" || exit 1
