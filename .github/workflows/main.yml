@@ -20,11 +20,19 @@ jobs:
           brew install qt@6
           echo 'export PATH="/opt/homebrew/opt/qt@6/bin:$PATH"' >> $GITHUB_ENV
 
-      # Make the script executable
+      # Make the download script executable
+      - name: Make download script executable
+        run: chmod +x ./download.py
+
+      # Run the download script
+      - name: Run download script
+        run: python3 ./download.py
+
+      # Make the main script executable
       - name: Make script executable
         run: chmod +x ./run_script.sh
 
-      # Run the script
+      # Run the main script
       - name: Run Onyx script
         run: ./run_script.sh
 
