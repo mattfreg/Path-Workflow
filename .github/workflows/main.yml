@@ -14,6 +14,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      # Install Qt 6
+      - name: Install Qt 6
+        run: |
+          brew install qt@6
+          echo 'export PATH="/opt/homebrew/opt/qt@6/bin:$PATH"' >> $GITHUB_ENV
+
       # Make the script executable
       - name: Make script executable
         run: chmod +x ./run_script.sh
@@ -28,5 +34,5 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add paths/* final_output.txt
-          git commit -m "Add output PNGs and final_output.txt"
+          git commit -m "Add output PNGs and final_output.txt" || echo "No changes to commit"
           git push
