@@ -65,7 +65,7 @@ for dir in "$parent_directory"/*/; do
         #### PRO LEAD #####
 
         # Assign the Guitar path output of CHOpt command to the variable $guitar_path
-        guitar_path=$( /Users/matthewfregnan/Scripts/CHOpt.CLI.1.6.1.x64.Mac/1.8.1/fnf_chopt -f *_pro.mid --lazy 1000000 --squeeze 40 --early-whammy 0 --no-image --engine rb  | \
+        guitar_path=$( ../cli/fnf_chopt -f *_pro.mid --lazy 1000000 --squeeze 40 --early-whammy 0 --no-image --engine rb  | \
         grep -v "Optimising" | \
         sed -e 's/ ([^(]*)//g' | \
         awk '/^Total score:/ {next} !/^Path:|^No SP score:/ {gsub(/: /, "/", $0); gsub(/: /, ",", $0); gsub("/ ", "/", $0); if (NR > 1 && items) printf ", "; printf "%s", $0; items=1} END {if (NR > 0) printf "\n"}' )
@@ -74,13 +74,13 @@ for dir in "$parent_directory"/*/; do
         guitar_path_image="'$guitar_output'"
 
         # Guitar Score
-        guitar_score=$( /Users/matthewfregnan/Scripts/CHOpt.CLI.1.6.1.x64.Mac/1.8.1/CHOpt -f *_pro.mid --early-whammy 0 --squeeze 40 --engine fnf -o "$guitar_output" | \
+        guitar_score=$( ../cli/CHOpt -f *_pro.mid --early-whammy 0 --squeeze 40 --engine fnf -o "$guitar_output" | \
         awk '/^Total score:/ {print $NF; exit}' )
 
         #### PRO BASS #####
 
         # Assign the Bass path output of CHOpt command to the variable $bass_path
-        bass_path=$( /Users/matthewfregnan/Scripts/CHOpt.CLI.1.6.1.x64.Mac/1.8.1/fnf_chopt -f *_pro.mid -i bass --lazy 100000 --squeeze 40 --no-image --early-whammy 0 --engine rb -o "$bass_output" | \
+        bass_path=$( ../cli/fnf_chopt -f *_pro.mid -i bass --lazy 100000 --squeeze 40 --no-image --early-whammy 0 --engine rb -o "$bass_output" | \
         grep -v "Optimising" | \
         sed -e 's/ ([^(]*)//g' | \
         awk '/^Total score:/ {next} !/^Path:|^No SP score:/ {gsub(/: /, "/", $0); gsub(/: /, ",", $0); gsub("/ ", "/", $0); if (NR > 1 && items) printf ", "; printf "%s", $0; items=1} END {if (NR > 0) printf "\n"}' )
@@ -89,12 +89,12 @@ for dir in "$parent_directory"/*/; do
         bass_path_image="'$bass_output'"
 
         # Bass Score
-        bass_score=$( /Users/matthewfregnan/Scripts/CHOpt.CLI.1.6.1.x64.Mac/1.8.1/CHOpt -f *_pro.mid -i bass --early-whammy 0 --squeeze 40 --engine fnf -o "$bass_output" | \
+        bass_score=$( ../cli/CHOpt -f *_pro.mid -i bass --early-whammy 0 --squeeze 40 --engine fnf -o "$bass_output" | \
         awk '/^Total score:/ {print $NF; exit}' )
 
         #### DRUMS #####
         # Assign the drums path output of CHOpt command to the variable $drums_path
-        drums_path=$( /Users/matthewfregnan/Scripts/CHOpt.CLI.1.6.1.x64.Mac/1.8.1/fnf_chopt -f *_drumvox.mid --lazy 1000000 --squeeze 40 --early-whammy 0 --no-image --engine rb  | \
+        drums_path=$( ../cli/fnf_chopt -f *_drumvox.mid --lazy 1000000 --squeeze 40 --early-whammy 0 --no-image --engine rb  | \
         grep -v "Optimising" | \
         sed -e 's/ ([^(]*)//g' | \
         awk '/^Total score:/ {next} !/^Path:|^No SP score:/ {gsub(/: /, "/", $0); gsub(/: /, ",", $0); gsub("/ ", "/", $0); if (NR > 1 && items) printf ", "; printf "%s", $0; items=1} END {if (NR > 0) printf "\n"}' )
@@ -103,13 +103,13 @@ for dir in "$parent_directory"/*/; do
         drums_path_image="'$drums_output'"
 
         # drums Score
-        drums_score=$( /Users/matthewfregnan/Scripts/CHOpt.CLI.1.6.1.x64.Mac/1.8.1/CHOpt -f *_drumvox.mid --early-whammy 0 --squeeze 40 --engine fnf -o "$drums_output" | \
+        drums_score=$( ../cli/CHOpt -f *_drumvox.mid --early-whammy 0 --squeeze 40 --engine fnf -o "$drums_output" | \
         awk '/^Total score:/ {print $NF; exit}' )
 
         #### VOCALS ####
 
         # Assign the vocals path output of CHOpt command to the variable $vocals_path
-        vocals_path=$( /Users/matthewfregnan/Scripts/CHOpt.CLI.1.6.1.x64.Mac/1.8.1/fnf_chopt -f *_drumvox.mid -i bass --lazy 100000 --squeeze 40 --no-image --early-whammy 0 --engine rb -o "$vocals_output" | \
+        vocals_path=$( ../cli/fnf_chopt -f *_drumvox.mid -i bass --lazy 100000 --squeeze 40 --no-image --early-whammy 0 --engine rb -o "$vocals_output" | \
         grep -v "Optimising" | \
         sed -e 's/ ([^(]*)//g' | \
         awk '/^Total score:/ {next} !/^Path:|^No SP score:/ {gsub(/: /, "/", $0); gsub(/: /, ",", $0); gsub("/ ", "/", $0); if (NR > 1 && items) printf ", "; printf "%s", $0; items=1} END {if (NR > 0) printf "\n"}' )
@@ -118,13 +118,13 @@ for dir in "$parent_directory"/*/; do
         vocals_path_image="'$vocals_output'"
 
         # vocals Score
-        vocals_score=$( /Users/matthewfregnan/Scripts/CHOpt.CLI.1.6.1.x64.Mac/1.8.1/CHOpt -f *_drumvox.mid -i bass --early-whammy 0 --squeeze 40 --engine fnf -o "$vocals_output" | \
+        vocals_score=$( ../cli/CHOpt -f *_drumvox.mid -i bass --early-whammy 0 --squeeze 40 --engine fnf -o "$vocals_output" | \
         awk '/^Total score:/ {print $NF; exit}' )    
 
         #### LEAD #####
 
         # Assign the lead path output of CHOpt command to the variable $lead_path
-        lead_path=$( /Users/matthewfregnan/Scripts/CHOpt.CLI.1.6.1.x64.Mac/1.8.1/fnf_chopt -f *.mid --lazy 1000000 --early-whammy 0 --squeeze 40 --no-image --engine rb  | \
+        lead_path=$( ../cli/fnf_chopt -f *.mid --lazy 1000000 --early-whammy 0 --squeeze 40 --no-image --engine rb  | \
         grep -v "Optimising" | \
         sed -e 's/ ([^(]*)//g' | \
         awk '/^Total score:/ {next} !/^Path:|^No SP score:/ {gsub(/: /, "/", $0); gsub(/: /, ",", $0); gsub("/ ", "/", $0); if (NR > 1 && items) printf ", "; printf "%s", $0; items=1} END {if (NR > 0) printf "\n"}' )
@@ -133,13 +133,13 @@ for dir in "$parent_directory"/*/; do
         lead_path_image="'$lead_output'"
 
         # lead Score
-        lead_score=$( /Users/matthewfregnan/Scripts/CHOpt.CLI.1.6.1.x64.Mac/1.8.1/CHOpt -f *.mid --early-whammy 0 --squeeze 40 --engine fnf -o "$lead_output" | \
+        lead_score=$( ../cli/CHOpt -f *.mid --early-whammy 0 --squeeze 40 --engine fnf -o "$lead_output" | \
         awk '/^Total score:/ {print $NF; exit}' )
 
         #### BASS #####
 
         # Assign the mbass path output of CHOpt command to the variable $mbass_path
-        mbass_path=$( /Users/matthewfregnan/Scripts/CHOpt.CLI.1.6.1.x64.Mac/1.8.1/fnf_chopt -f *.mid -i bass --lazy 100000 --squeeze 40 --no-image --early-whammy 0 --engine rb -o "$mbass_output" | \
+        mbass_path=$( ../cli/fnf_chopt -f *.mid -i bass --lazy 100000 --squeeze 40 --no-image --early-whammy 0 --engine rb -o "$mbass_output" | \
         grep -v "Optimising" | \
         sed -e 's/ ([^(]*)//g' | \
         awk '/^Total score:/ {next} !/^Path:|^No SP score:/ {gsub(/: /, "/", $0); gsub(/: /, ",", $0); gsub("/ ", "/", $0); if (NR > 1 && items) printf ", "; printf "%s", $0; items=1} END {if (NR > 0) printf "\n"}' )
@@ -148,7 +148,7 @@ for dir in "$parent_directory"/*/; do
         mbass_path_image="'$mbass_output'"
 
         # mbass Score
-        mbass_score=$( /Users/matthewfregnan/Scripts/CHOpt.CLI.1.6.1.x64.Mac/1.8.1/CHOpt -f *.mid -i bass --early-whammy 0 --squeeze 40 --engine fnf -o "$mbass_output" | \
+        mbass_score=$( ../cli/CHOpt -f *.mid -i bass --early-whammy 0 --squeeze 40 --engine fnf -o "$mbass_output" | \
         awk '/^Total score:/ {print $NF; exit}' )    
 
         ##############################################
