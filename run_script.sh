@@ -167,3 +167,21 @@ done
 
 # Append the closing bracket to the output file
 echo "];" >> "$original_dir/fnfp.fs"
+
+
+# Specify the parent directory to search for PNG files
+parent_directory="."
+
+# Specify the directory to move PNG files into
+paths_directory="$parent_directory/paths"
+mkdir -p "$paths_directory"  # Create 'paths' directory if it doesn't exist
+
+# Move all .png files to the 'paths' directory
+echo "Moving .png files to 'paths' directory..."
+find "$parent_directory" -type f -name "*.png" -exec mv {} "$paths_directory" \;
+echo "All .png files moved to 'paths' directory: $paths_directory"
+
+# Remove directories ending with _import
+echo "Removing directories ending with '_import'..."
+find "$parent_directory" -type d -name "*_import" -exec rm -rf {} +
+echo "Directories ending with '_import' removed."
