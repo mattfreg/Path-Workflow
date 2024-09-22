@@ -1,0 +1,32 @@
+name: Run Onyx Script
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  run-script:
+    runs-on: macos-latest
+
+    steps:
+      # Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Make the script executable
+      - name: Make script executable
+        run: chmod +x ./run_script.sh
+
+      # Run the script
+      - name: Run Onyx script
+        run: ./run_script.sh
+
+      # Add generated files to GitHub
+      - name: Add PNGs and output.txt to repo
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add paths/* final_output.txt
+          git commit -m "Add output PNGs and final_output.txt"
+          git push
