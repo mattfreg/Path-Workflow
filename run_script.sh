@@ -166,7 +166,7 @@ for dir in "$parent_directory"/*/; do
 done
 
 # Append the closing bracket to the output file
-echo "];" >> "$original_dir/fnfp.fs"
+echo "];" >> "$original_dir/fnfp.js"
 
 
 # Specify the parent directory to search for PNG files
