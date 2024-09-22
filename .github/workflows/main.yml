@@ -14,22 +14,23 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # Install Python and pip
-      - name: Install Python
-        run: |
-          brew install python
-          python3 -m pip install --upgrade pip
-
-      # Install required Python modules
-      - name: Install Python modules
-        run: |
-          pip install requests mido
-
       # Install Qt 6
       - name: Install Qt 6
         run: |
           brew install qt@6
           echo 'export PATH="/opt/homebrew/opt/qt@6/bin:$PATH"' >> $GITHUB_ENV
+
+      # Install Python and pip
+      - name: Install Python
+        run: brew install python
+
+      # Create a virtual environment and install required Python modules
+      - name: Setup Python environment
+        run: |
+          python3 -m venv venv
+          source venv/bin/activate
+          pip install --upgrade pip
+          pip install requests mido
 
       # Make the download script executable
       - name: Make download script executable
@@ -37,7 +38,9 @@ jobs:
 
       # Run the download script
       - name: Run download script
-        run: python3 ./download.py
+        run: |
+          source venv/bin/activate
+          python ./download.py
 
       # Make the main script executable
       - name: Make script executable
@@ -45,7 +48,9 @@ jobs:
 
       # Run the main script
       - name: Run Onyx script
-        run: ./run_script.sh
+        run: |
+          source venv/bin/activate
+          ./run_script.sh
 
       # Add generated files to GitHub
       - name: Add PNGs and output.txt to repo
