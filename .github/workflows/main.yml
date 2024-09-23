@@ -1,9 +1,11 @@
-name: Run Onyx Script
+name: Generate Paths
 
 on:
   push:
     branches:
       - main
+  schedule:
+    - cron: "00 19 * * 4"  # Schedule for 7 PM UTC on Thursday (Friday 5 AM AEST/AEDT)
 
 jobs:
   run-script:
@@ -30,27 +32,27 @@ jobs:
           python3 -m venv venv
           source venv/bin/activate
           pip install --upgrade pip
-          pip install requests mido aes pycryptodome crypto
+          pip install requests mido pycryptodome
 
       # Make the download script executable
       - name: Make download script executable
-        run: chmod +x ./download.py
+        run: chmod +x ./scripts/download.py
 
       # Run the download script
       - name: Run download script
         run: |
           source venv/bin/activate
-          python ./download.py
+          python ./scripts/download.py
 
       # Make the main script executable
-      - name: Make script executable
-        run: chmod +x ./run_script.sh
+      - name: Make main script executable
+        run: chmod +x ./scripts/run_script.sh
 
       # Run the main script
-      - name: Run Onyx script
+      - name: Generate Paths
         run: |
           source venv/bin/activate
-          ./run_script.sh
+          ./scripts/run_script.sh
 
       # Tell Git to skip pulling the 'paths' folder and 'fnfp.js'
       - name: Skip paths folder and fnfp.js in pull
@@ -58,12 +60,21 @@ jobs:
           git update-index --skip-worktree paths/
           git update-index --skip-worktree fnfp.js
 
+      # Stash any local changes before pulling the latest code
+      - name: Stash changes before pull
+        run: |
+          git stash
+
       # Pull the latest changes from the remote repository
       - name: Pull latest changes
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git pull --rebase origin main
+
+      # Apply the stashed changes
+      - name: Apply stashed changes
+        run: git stash pop
 
       # Add generated files to GitHub
       - name: Add generated files to repo
