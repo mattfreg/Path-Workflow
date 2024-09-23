@@ -34,34 +34,31 @@ jobs:
 
       # Make the download script executable
       - name: Make download script executable
-        run: chmod +x ./download.py
+        run: chmod +x ./scripts/download.py
 
       # Run the download script
       - name: Run download script
         run: |
           source venv/bin/activate
-          python ./download.py
+          python ./scripts/download.py
 
       # Make the main script executable
-      - name: Make script executable
-        run: chmod +x ./run_script.sh
+      - name: Make main script executable
+        run: chmod +x ./scripts/run_script.sh
+
+      # Remove the old fnfp.js before running the script
+      - name: Remove old fnfp.js
+        run: rm -f fnfp.js
 
       # Run the main script
       - name: Run Onyx script
         run: |
           source venv/bin/activate
-          ./run_script.sh
-
-      # Tell Git to skip pulling the 'paths' folder and 'fnfp.js'
-      - name: Skip paths folder and fnfp.js in pull
-        run: |
-          git update-index --skip-worktree paths/
-          git update-index --skip-worktree fnfp.js
+          ./scripts/run_script.sh
 
       # Stash any local changes before pulling the latest code
       - name: Stash changes before pull
-        run: |
-          git stash
+        run: git stash
 
       # Pull the latest changes from the remote repository
       - name: Pull latest changes
@@ -72,16 +69,14 @@ jobs:
 
       # Apply the stashed changes
       - name: Apply stashed changes
-        run: git stash pop
+        run: git stash pop || echo "No changes to apply"
 
-      # Add generated files to GitHub with sparse option
+      # Add generated files to GitHub
       - name: Add generated files to repo
         run: |
-          git add --sparse paths/* fnfp.js
+          git add paths/* fnfp.js
           git commit -m "Add New Song Paths" || echo "No changes to commit"
-
 
       # Push changes to the remote repository
       - name: Push changes
         run: git push origin main
-
