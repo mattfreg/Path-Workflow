@@ -2290,35 +2290,6 @@ const songs = [
             pscore : "264582",
             } 
         },
-{ value : "8-Bit Beat by Epic Games", 
-            data : {
-            shortname : "eightbitbeat",
-
-            dpath : "3/8th R, 1/2nd GY, 1/1st Y, 2(+1)/21st Y, 1/8th GY",
-            d_image : "'8bit_beat_by_epic_games_drums.png'",
-            dscore : "107136",
-
-            vpath : "1/10th B, 1/NN, 1/NN, 1/7th G, 3(+1)/1.4 beats after 3rd GB, 1/4th B",
-            v_image : "'8bit_beat_by_epic_games_vocals.png'",
-            vscore : "126672",
-
-            gpath : "1/10th Y, 1/NN, 1/NN, 2/1st GRB, 1/1st G, 1/1st O, 1/NN",
-            g_image : "'8bit_beat_by_epic_games_guitar.png'",
-            gscore : "97920",
-
-            bpath : "1/3rd G, 1/NN, 1/NN, 1/NN, 1/3rd Y, 1/2nd Y, 1/2nd Y, 1/4th G",
-            b_image : "'8bit_beat_by_epic_games_mbass.png'",
-            bscore : "112938",
-
-            lpath : "1/12th Y, 1/NN, 1/NN, 1/1st G, 1/1st O, 1/2nd R, 1/1st O, 1/2nd R",
-            l_image : "'8bit_beat_by_epic_games_lead.png'",
-            lscore : "92592",
-
-            ppath : "1/3rd G, 1/NN, 1/NN, 1/NN, 1/3rd Y, 1/2nd Y, 1/2nd Y, 1/4th G",
-            p_image : "'8bit_beat_by_epic_games_bass.png'",
-            pscore : "112938",
-            } 
-        },
 { value : "Ella Baila Sola by Eslabon Armado, Peso Pluma ", 
             data : {
             shortname : "ellabailasola",
