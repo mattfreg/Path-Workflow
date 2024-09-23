@@ -74,12 +74,14 @@ jobs:
       - name: Apply stashed changes
         run: git stash pop
 
-      # Add generated files to GitHub
+      # Add generated files to GitHub with sparse option
       - name: Add generated files to repo
         run: |
-          git add paths/* fnfp.js
+          git add --sparse paths/* fnfp.js
           git commit -m "Add New Song Paths" || echo "No changes to commit"
+
 
       # Push changes to the remote repository
       - name: Push changes
         run: git push origin main
+
