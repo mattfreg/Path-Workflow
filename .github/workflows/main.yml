@@ -34,17 +34,17 @@ jobs:
 
       # Make the download script executable
       - name: Make download script executable
-        run: chmod +x ./scripts/download.py
+        run: chmod +x ./download.py
 
       # Run the download script
       - name: Run download script
         run: |
           source venv/bin/activate
-          python ./scripts/download.py
+          python ./download.py
 
       # Make the main script executable
       - name: Make main script executable
-        run: chmod +x ./scripts/run_script.sh
+        run: chmod +x ./run_script.sh
 
       # Remove the old fnfp.js before running the script
       - name: Remove old fnfp.js
@@ -54,7 +54,7 @@ jobs:
       - name: Run Onyx script
         run: |
           source venv/bin/activate
-          ./scripts/run_script.sh
+          ./run_script.sh
 
       # Stash any local changes before pulling the latest code
       - name: Stash changes before pull
