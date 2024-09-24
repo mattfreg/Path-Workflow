@@ -2,10 +2,7 @@ name: Run Script Schedule
 
 on:
   schedule:
-    - cron: "00 10 * * *"  # Every Thursday at 7:00 PM UTC (Friday 5:00 AM AEST/AEDT)
-  push:
-    branches:
-      - main
+    - cron: "45 * * * *"  # Every Thursday at 7:00 PM UTC (Friday 5:00 AM AEST/AEDT)
 
 jobs:
   run-script:
