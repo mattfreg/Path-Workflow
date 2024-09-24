@@ -1,4 +1,4 @@
-name: Run Onyx Script
+name: Run Script Schedule
 
 on:
   schedule:
